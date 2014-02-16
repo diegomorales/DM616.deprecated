@@ -1,0 +1,465 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html{
+  height:100%;
+  background:url('../img/bg.jpg') no-repeat top center;
+  @include background-size(cover);
+  font-family:Arial, sans-serif;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* Webfonts ------------------ */
+@font-face {
+    font-family: 'digital_dream_fat_skew_narrRg';
+    src: url('../webfonts/DIGITALDREAMFATSKEWNARROW-webfont.eot');
+    src: url('../webfonts/DIGITALDREAMFATSKEWNARROW-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/DIGITALDREAMFATSKEWNARROW-webfont.woff') format('woff'),
+         url('../webfonts/DIGITALDREAMFATSKEWNARROW-webfont.ttf') format('truetype'),
+         url('../webfonts/DIGITALDREAMFATSKEWNARROW-webfont.svg#digital_dream_fat_skew_narrRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'digital_dream_narrowregular';
+    src: url('../webfonts/DIGITALDREAMNARROW-webfont.eot');
+    src: url('../webfonts/DIGITALDREAMNARROW-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/DIGITALDREAMNARROW-webfont.woff') format('woff'),
+         url('../webfonts/DIGITALDREAMNARROW-webfont.ttf') format('truetype'),
+         url('../webfonts/DIGITALDREAMNARROW-webfont.svg#digital_dream_narrowregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* ---------------------------- */
+
+.modal{
+  display:none;
+  background-color:#fff;
+  color:#000;
+  position:absolute;
+  border:2px solid #ccc;
+  @include border-radius;
+  padding:8px 12px;
+  top:120px;
+  left:50%;
+  z-index:1000;
+  .close-modal{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #000;
+    width: 23px;
+    height: 23px;
+    border-radius: 18px;
+    border: 2px solid #ddd;
+    padding-top: 1px;
+    padding-left: 4px;
+    a{
+      font-size:14px;
+      display:block;
+      text-decoration:none;
+      color:#fff;
+    }
+  }
+}
+
+#app{
+  margin:0px auto;
+  width:1084px;
+  height:922px;
+}
+
+#mixer-app{
+  margin:0px auto;
+  width:1084px;
+  height:922px;
+  position:relative;
+  #mixer-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:1084px;
+    height:922px;
+    z-index:-10;
+  }
+  #mainpanel{
+    width: 952px;
+    height: 809px;
+    position:absolute;
+    top:20px;
+    left:66px;
+    @include background-image(linear-gradient(#E2DED7, darken(#E2DED7, 15%)));
+    #channel-section{
+      width:420px;
+      height: 809px;
+      float:left;
+      .channel-strip{
+        width:70px;
+        height:809px;
+        float:left;
+        border-right: 1px solid #999;
+        .input-section{
+          width:70px;
+          height:175px;
+          
+          @include background-image(linear_gradient(#AAAAA0, lighten(#AAAAA0, 10%)));
+          border-right: 1px solid #999;
+        }
+        .eq-routing-section{
+          width:70px;
+          height:428px;
+          .eq{
+            width:70px;
+            height:172px;
+          }
+          .sends{
+            width:70px;
+            height:144px;
+            .send{
+              width:70px;
+              height:72px;
+            }
+          }
+          .pan{
+            width:70px;
+            height:72px;
+          }
+          .busselect{
+            width:70px;
+            height:50px;
+          }
+        }
+        .fader-section{
+          width:70px;
+          height:206px;
+        }
+      }
+    }
+    #output-section{
+      width:210px;
+      height:175px;
+      float:left;
+      @include background-image(linear_gradient(#AAAAA0, lighten(#AAAAA0, 10%)));
+      .module-title{
+        margin:0 auto;
+        height:20px;
+        width:202px;
+        background-color:#000;
+        color:#fff;
+        text-align:center;
+        font-size:12px;
+        line-height:20px;
+        vertical-align:middle;
+      }
+      ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+      }
+      .insert-slot{
+        margin:5px auto;
+        width:202px;
+        border:1px solid #ccc;
+        background-color:#999;
+        padding:2px 6px;
+        a{
+          text-decoration:none;
+          color:#fff;
+          font-size:10px;
+          text-transform:uppercase;
+        }
+      }
+    }
+    #logo-section{
+      width:322px;
+      height:175px;
+      float:left;
+      position:relative;
+      @include background-image(linear_gradient(#AAAAA0, lighten(#AAAAA0, 10%)));
+      img{
+        position:absolute;
+        top:22px;
+        left:119px;
+      }
+    }
+    #fx-section{
+      width:210px;
+      height:428px;
+      float:left;
+    }
+    #cassette-section{
+      width:322px;
+      height:172px;
+      float:left;
+      background-color: #000;
+      color:#fff;
+      font-size:10px;
+      padding:10px;
+      .buttons{
+        padding:0;
+        margin:0;
+        list-style:none;
+        &.left{
+          float:left;
+        }
+        &.right{
+          float:right;
+        }
+        li{
+          float:left;
+          &.separator{
+            width:4px;
+            display:block;
+          }
+          a{
+            text-decoration: none;
+            color:#fff;
+            display:block;
+            text-align: center;
+            height:40px;
+            line-height: 40px;
+            vertical-align:middle;
+            width:60px;
+            border: 2px solid #333;
+            @include background-image(linear-gradient(#000, #333 49%, #3C3C3C 50%, #000));
+          }
+        }
+      }
+    }
+    #meter-section{
+      width:322px;
+      height:256px;
+      float:left;
+    }
+    #bus-section{
+      width:210px;
+      height:206px;
+      float:left;
+      .bus-channel{
+        width:70px;
+        height:206px;
+        float:left;
+        border-right: 1px solid #999;
+      }
+    }
+    #transport-section{
+      width:322px;
+      height:206px;
+      background-color:#E4E8EC;
+      float:left;
+    }
+  }
+}
+
+#mixer{
+  margin:1em auto;
+  max-width:$main-width;
+  height:$main-height;
+  width:100%;
+  background-color: #e3dfd9;
+  @include single-box-shadow(#000,0,0,90px, 0px);
+  border-left:2.6em solid #757575;
+  border-right:2.6em solid #757575;
+  @include border-radius;
+  #channel-section,
+  #mid-section,
+  #transport-meter-section{
+    float:left;
+    height:$main-height - $footer-height;
+  }
+  
+  #channel-section{
+    @include clearfix;
+    .channel-strip{
+      width: 4.375em;
+      float:left;
+      .input-section{
+        width:100%;
+        height:10.875em;
+        //background-color:#a8a39f;
+        @include background-image(linear-gradient(darken(#a8a39f, 10%), #a8a39f));
+      }
+      .eq-routing-section{
+        width:100%;
+        height:26em;
+        border-right: 1px solid #aaa;
+        border-left: 1px solid #999;
+        //background-color:#A87F70;
+        .eq-knob{
+          position:relative;
+          padding-top:0.8em;
+          height:4.375em;
+          .eq-freq{
+            position:absolute;
+            width:100%;
+            left:9%;
+          }
+          .eq-gain{
+            position:absolute;
+            width:100%;
+            top: 1.6em;
+            left: 28%;
+          }
+        }
+        .panner{
+          text-align:center;
+        }
+      }
+      .fader-section{
+        width:100%;
+        height:11.625em;
+        //background-color:#BFA6B0;
+        input[type=range]{
+          -webkit-appearance: slider-vertical; 
+        }
+        .volume-fader{
+          height:inherit;
+          .fader-header{
+            background-color:#000;
+            color:#fff;
+            height:1.625em;
+          }
+          .gain-display{
+            //display: block;
+            //float: left;
+            border:none;
+            width:2em;
+          }
+          .fader-control{          
+            height: 10em;
+            padding-top:0.4em;
+            padding-bottom:0.7em;
+            border-right: 1px solid #aaa;
+            border-left: 1px solid #999;
+            .fader-track{
+              position:relative;
+              height:100%;
+              background-color:#000;
+              width:0.5em;
+              margin:0 auto;    
+              .fader-button{
+                position:absolute;
+                display:block;
+                width:2em;
+                height:3em;
+                background-color:#fff;
+                @include background-image(linear-gradient(#fff, #f0f0f0 24%, #f0f0f0 48%, red 50%, #f0f0f0 52%, #f0f0f0 76%, #fff));
+                @include single-box-shadow();
+                left:-150%;
+              } 
+            }
+          }
+        }
+      }
+      .loader-img{
+        display:none;
+      }
+    }
+  }
+  #mid-section{}
+  #transport-meter-section{}
+  #armrest{
+    height:$footer-height;
+    @include background-image(linear-gradient(lighten(#6d0909,10%), #6d0909 12%, darken(#6d0909, 5%) 95%));
+    p{
+      margin:0;
+    }
+  }
+}
+
+/*
+
+@media only screen and (max-height: 55em) {
+  html{
+    font-size:90%; 
+  }
+}
+
+@media only screen and (max-height: 53em) {
+  html{
+    font-size:85%; 
+  }
+}
+
+@media only screen and (max-height: 51em) {
+  html{
+    font-size:80%; 
+  }
+}
+
+@media only screen and (max-height: 49em) {
+  html{
+    font-size:75%; 
+  }
+}
+
+@media only screen and (max-height: 47em) {
+  html{
+    font-size:72%; 
+  }
+}
+*/

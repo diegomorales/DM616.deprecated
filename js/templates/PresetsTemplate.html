@@ -1,0 +1,8 @@
+<div id="preset-dialog" class="modal">
+    <h1>Choose a preset to load in the mixer.</h1>
+    <% _.each(collection, function(model,index){ %>
+        <div ><a class="preset-link" id="<%= model.name %>" data-preset="<%= index %>" href="#"><%= model.title %></a></div>
+    <% }); %>
+    
+    <div class="close-modal"><a href="#">&#x2716;</a></div>
+</div>

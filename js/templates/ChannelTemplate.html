@@ -1,0 +1,14 @@
+<canvas id="input-<%= channel_nr %>" width="70" height="175" class="input-section"></canvas>
+<div class="eq-routing-section">
+    <div id="eq-<%= channel_nr %>" class="eq">
+        <canvas id="eq-hi-<%= channel_nr %>" class="eq-knob" width="70" height="86"></canvas>
+        <canvas id="eq-lo-<%= channel_nr %>" class="eq-knob" width="70" height="86"></canvas>
+    </div>
+    <div id="send-<%= channel_nr %>" class="sends">
+        <canvas id="send1-<%= channel_nr %>" width="70" height="72" class="send"></canvas>
+        <canvas id="send2-<%= channel_nr %>" width="70" height="72" class="send"></canvas>
+    </div>
+    <canvas id="pan-<%= channel_nr %>" class="pan" width="70" height="72"></canvas>
+    <canvas id="busselect-<%= channel_nr %>" width="70" height="40" ></canvas>
+</div>
+<canvas id="fader-<%= channel_nr %>" width="70" height="206" class="fader-section"></canvas>

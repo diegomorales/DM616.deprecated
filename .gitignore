@@ -1,0 +1,7 @@
+*.class
+*.project
+*.pyc
+*.pyo
+*.wav
+img/Akai_MG614.jpg
+.sass-cache
